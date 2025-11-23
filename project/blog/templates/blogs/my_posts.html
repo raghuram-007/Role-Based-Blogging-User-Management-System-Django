@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}My Blog Posts{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="mb-4">My Blog Posts</h1>
+
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <!-- Fixed image height with object-fit to maintain card shape -->
+                {% if post.image %}
+                <img src="{{ post.image.url }}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="{{ post.title }}">
+                {% else %}
+                <img src="https://via.placeholder.com/400x200.png?text=No+Image" class="card-img-top" style="height: 200px; object-fit: cover;" alt="No image">
+                {% endif %}
+
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text mb-0">
+                        <strong>Status:</strong> {{ post.status }}<br>
+                        <strong>Category:</strong> {{ post.category.name }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No posts yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
