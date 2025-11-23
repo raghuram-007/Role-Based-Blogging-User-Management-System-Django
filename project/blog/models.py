@@ -4,14 +4,14 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.conf import settings
 
-# 1. Category model
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
 
-# 2. Post model
+
 class Post(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
@@ -30,19 +30,6 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-
-# # 3. UserProfile model
-# class UserProfile(models.Model):
-#     ROLE_CHOICES = (
-#         ('doctor', 'Doctor'),
-#         ('patient', 'Patient'),
-#     )
-
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='patient')
-
-#     def __str__(self):
-#         return f"{self.user.username} - {self.role}"
 
 
 

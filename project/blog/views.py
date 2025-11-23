@@ -1,4 +1,4 @@
-# blogs/views.py
+
 
 from django.shortcuts import render, redirect
 from .forms import PostForm
@@ -9,15 +9,15 @@ from .models import Category, Post
 
 @login_required
 def create_post(request):
-    # Only doctors can create posts
+   
     if request.user.user_type != 'doctor':
-        return redirect('patient_posts')  # redirect patients to view posts
+        return redirect('patient_posts')  
 
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-            post.author = request.user  # assign current user as author
+            post.author = request.user  
             post.save()
             return redirect('my_posts')
     else:
@@ -28,13 +28,13 @@ def create_post(request):
 
 @login_required
 def my_posts(request):
-    # Only show posts by the logged-in doctor
+    
     posts = Post.objects.filter(author=request.user)
     return render(request, 'blogs/my_posts.html', {'posts': posts})
 
 
 def patient_posts(request):
-    # Patients can view all published posts categorized
+   
     categories = Category.objects.all()
     category_posts = {}
     for category in categories:
