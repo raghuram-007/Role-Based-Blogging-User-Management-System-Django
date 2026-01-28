@@ -1,5 +1,5 @@
 
-#  Django Blog System (Task 3)
+#  Django Blog System 
 
 ## 🔗 Overview
 
